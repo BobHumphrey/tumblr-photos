@@ -1,0 +1,27 @@
+@import 'variables';
+
+img {
+  margin-bottom: 10px;
+  border: 1px solid #e7e7e7;
+}
+.submissions-grid img {
+  width: 100px;
+}
+.delete-buttons {
+  margin-top: 20px;
+}
+.content-photos {
+  padding-bottom: 0;
+}
+.content-photos img {
+  margin-bottom: 40px;
+}
+.content-photos-list,
+.content-galleries,
+.content-submissions {
+  margin-top: -25px;
+}
+.photos-grid td, .photos-grid th,
+.submissions-grid td, .submissions-grid th {
+  text-align: center;
+}
