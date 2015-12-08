@@ -2,8 +2,9 @@
 
 $galleriesLink = action('GalleriesController@index');
 $galleriesCreateLink = action('GalleriesController@create');
-$photosLink = url('photos/display/1');
+$photosLink = url('photos/display');
 $photosListLink = action('PhotosController@listing');
+$photosNewLink = url('photos/list/new');
 $photosCreateLink = action('PhotosController@create');
 $submissionsLink = action('SubmissionsController@index');
 $loginLink = action('Auth\AuthController@getLogin');
@@ -76,8 +77,16 @@ elseif ($path == '/auth/login') {
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="{{$photos}}"><a href="{{$photosLink}}">PHOTOS</a></li>
-        <li class="{{$photosList}} visible-lg-inline"><a href="{{$photosListLink}}">PHOTO LIST</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+          role="button" aria-haspopup="true" aria-expanded="false">
+          PHOTOS <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="{{$photos}}"><a href="{{$photosLink}}">DISPLAY</a></li>
+            <li class="{{$photosList}} visible-lg-inline"><a href="{{$photosListLink}}">LIST</a></li>
+            <li class="{{$photosNewLink}} visible-lg-inline"><a href="{{$photosNewLink}}">NEW</a></li>
+          </ul>
+        </li>
         <li class="{{$galleries}}"><a href="{{$galleriesLink}}">GALLERIES</a></li>
         <li class="{{$submissions}}"><a href="{{$submissionsLink}}">SUBMISSIONS</a></li>
         <li class="dropdown">

@@ -1,12 +1,17 @@
 <?php
-
+if ($newOnly) {
+  $pageTitle = 'New Photos';
+}
+else {
+  $pageTitle = 'Photos';
+}
 ?>
 
 @extends('app')
 
 @section('pageTitle')
 
-Photos
+{{$pageTitle}}
 
 @stop
 

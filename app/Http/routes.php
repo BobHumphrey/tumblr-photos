@@ -20,9 +20,9 @@ Route::get('galleries/delete/{id}', 'GalleriesController@delete');
 
 
 // Extra route to provide alternate list of photos
-Route::get('photos/list', 'PhotosController@listing');
+Route::get('photos/list/{newOnly?}', 'PhotosController@listing');
 // Extra route to control index paging
-Route::get('photos/display/{page}', 'PhotosController@index');
+Route::get('photos/display/{page?}', 'PhotosController@index');
 
 Route::resource('photos', 'PhotosController');
 // Extra route to handle delete warning

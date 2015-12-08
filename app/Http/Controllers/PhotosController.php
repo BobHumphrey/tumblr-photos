@@ -19,7 +19,8 @@ class PhotosController extends Controller {
   *
   * @return Response
   */
-  public function index($page) {
+  public function index($page = null) {
+    $page = ($page) ? $page : 1;
     $photosPager = $this->dispatchFrom('App\Jobs\CreatePhotosPager', new Request, [
       'page' => $page]);
       return view('photos.index')->with([
@@ -104,7 +105,7 @@ class PhotosController extends Controller {
       $photo = Photo::findOrFail($id);
       $photo->update($request->all());
       flashMessage("The photo has been updated.", "alert-success");
-      return redirect('photos');
+      return redirect('photos/list');
     }
 
     public function delete($id) {
@@ -123,16 +124,15 @@ class PhotosController extends Controller {
       $id = $photo->id;
       $photo->delete();
       flashMessage("Photo with ID $id has been deleted.", "alert-success");
-      return redirect('photos');
+      return redirect('photos/list');
     }
 
-    public function listing(Request $request) {
-      $photosQueryBuilder = Photo::where('id', '>', 0);
-      $photos = $photosQueryBuilder->get();
-      $grids = $this->dispatchFrom('App\Jobs\CreatePhotoGrid', $request);
+    public function listing(Request $request, $newOnly = null) {
+      $grids = $this->dispatchFrom('App\Jobs\CreatePhotoGrid', $request,
+        ['newOnly' => $newOnly]);
       return view('photos.listing')->with([
         'grid' => $grids['grid'],
-        'photos' => $photos,
+        'newOnly' => $newOnly,
       ]);
     }
 

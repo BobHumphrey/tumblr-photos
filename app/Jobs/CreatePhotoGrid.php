@@ -13,14 +13,15 @@ use Nayjest\Grids\GridConfig;
 
 class CreatePhotoGrid extends Job implements SelfHandling
 {
+  protected $newOnly;
   /**
   * Create a new job instance.
   *
   * @return void
   */
-  public function __construct()
+  public function __construct($newOnly)
   {
-    //
+    $this->newOnly = $newOnly;
   }
 
   /**
@@ -30,7 +31,12 @@ class CreatePhotoGrid extends Job implements SelfHandling
   */
   public function handle()
   {
-    $photosQueryBuilder = Photo::where('id', '>', 0);
+    if ($this->newOnly) {
+      $photosQueryBuilder = Photo::where('posted_date', '=', '0000-00-00');
+    }
+    else {
+      $photosQueryBuilder = Photo::where('id', '>', 0);
+    }
     $photos = $photosQueryBuilder->get();
     $gridColumns = [
       (new FieldConfig('id'))

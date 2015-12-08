@@ -38,6 +38,9 @@ Photos
     ?>
     @endforeach
 
+  </div>
+  <div class="row">
+
     <nav>
       <ul class="pager">
         <li class="previous"><a href={{$previousUrl}}><span aria-hidden="true">&larr;</span> Previous</a></li>
