@@ -1,5 +1,7 @@
 <?php
 $x = 0;
+$previousDisabled = ($previousUrl) ? '' : 'disabled';
+$nextDisabled = ($nextUrl) ? '' : 'disabled';
 ?>
 
 @extends('app')
@@ -43,8 +45,8 @@ Photos
 
     <nav>
       <ul class="pager">
-        <li class="previous"><a href={{$previousUrl}}><span aria-hidden="true">&larr;</span> Previous</a></li>
-        <li class="next"><a href={{$nextUrl}}>Next <span aria-hidden="true">&rarr;</span></a></li>
+        <li class="previous {{$previousDisabled}}"><a href={{$previousUrl}}><span aria-hidden="true">&larr;</span> Previous</a></li>
+        <li class="next {{$nextDisabled}}"><a href={{$nextUrl}}>Next <span aria-hidden="true">&rarr;</span></a></li>
       </ul>
     </nav>
 

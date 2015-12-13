@@ -15,10 +15,6 @@ elixir(function(mix) {
 
     mix.sass([
       'app.scss',
-      'navbar.scss',
-      'footer.scss',
-      'html.scss',
-      'custom.scss',
     ], 'resources/assets/css');
 
     mix.styles([

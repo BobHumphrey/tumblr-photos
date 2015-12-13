@@ -12,27 +12,47 @@ $home = env('BH_HOME');
     </div>
     <div class="row">
       <div class="col-md-3">
-        <div><a href="{{ $home }}">Bob Humphrey</a></div>
-        <div><a href="{{ $home }}">Web Development</a></div>
+        <div class="footer-title footer-title-top">ABOUT</div>
+        <a href="{{ $home }}/about.html">About</a><br>
+        <br>
+        <div class="footer-title footer-title-top">SKILLS</div>
+        <a href="{{ $home }}/skills.html">Skills</a><br>
+        <br>
+        <div class="footer-title footer-title-top">WORK</div>
+        <a href="{{ $home }}/work/personal.html">Personal Projects</a><br>
+        <a href="{{ $home }}/work/randall.html">Randall Library Projects</a><br>
+        <a href="{{ $home }}/work/roadway.html">Roadway Express Projects</a><br>
       </hr>
     </div>
     <div class="col-md-3">
-      <div class="footer-title footer-title-top">WORK</div>
+      <div class="footer-title footer-title-top">PERSONAL PROJECTS</div>
       <a href="http://photography.bobhumphrey.org/">Tumblr Photos</a><br>
     </div>
     <div class="col-md-3">
-      <div class="footer-title footer-title-top">PROGRAMMING</div>
-      <a href="{{ $home }}/programming/ebooks.html">Ebooks</a><br>
-      <a href="{{ $home }}/programming/online-resources.html">Online Resources</a><br>
+      <div class="footer-title footer-title-top">RESOURCES</div>
+      <a href="{{ $home }}/resources/ebooks.html">Ebooks</a><br>
+      <a href="{{ $home }}/resources/laravel.html">Laravel</a><br>
+      <a href="{{ $home }}/resources/miscellaneous.html">Miscellaneous</a><br>
+      <a href="{{ $home }}/resources/news.html">News</a><br>
+      <a href="{{ $home }}/resources/tools.html">Tools</a><br>
     </div>
     <div class="col-md-3">
       <div class="footer-title footer-title-top">REFERENCE</div>
+      <a href="{{ $home }}/reference/http.html">HTTP 1.1</a><br>
       <a href="{{ $home }}/reference/object-oriented.html">Object Oriented PHP</a><br>
       <a href="{{ $home }}/reference/website-deployment.html">Website Deployment</a><br>
     </div>
   </div>
 </div>
 </footer>
+
+
+
+<!--
+blade - {{ $home}}
+ejs - {{ $home }}
+-->
+
 
 
 

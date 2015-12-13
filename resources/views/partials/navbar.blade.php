@@ -10,52 +10,42 @@ $submissionsLink = action('SubmissionsController@index');
 $loginLink = action('Auth\AuthController@getLogin');
 $logoutLink = action('Auth\AuthController@getLogout');
 // Set the current page as active.
-$galleries = '';
-$galleriesCreate = '';
-$photos = '';
-$photosList = '';
-$photosCreate = '';
-$submissions = '';
-$login = '';
+$activePhotos = '';
+$activeGalleries = '';
+$activeSubmissions = '';
+$activeAdd = '';
+$activeLogin = '';
 $path = ($_SERVER['REQUEST_URI']);
-if ($path == '/galleries/create') {
-  $galleriesCreate = 'active';
-}
-elseif ($path == '/galleries') {
-  $galleries = 'active';
-}
-elseif (substr($path, 0, 10) == '/galleries') {
-  $galleries = 'active';
-}
-elseif ($path == '/photos/create') {
-  $photosCreate = 'active';
-}
-elseif (substr($path, 0, 12) == '/photos/list') {
-  $photosList = 'active';
-}
-elseif ($path == '/photos') {
-  $photos = 'active';
-}
-elseif ($path == '/') {
-  $photos = 'active';
-}
-elseif (substr($path, 0, 7) == '/photos') {
-  $photos = 'active';
-}
-elseif ($path == '/submissions') {
-  $submissions = 'active';
-}
-elseif (substr($path, 0,12) == '/submissions') {
-  $submissions = 'active';
-}
-elseif ($path == '/auth/login') {
-  $login = 'active';
-}
 
+$pathPhotosAdd = '/photos/create';
+$pathGalleriesAdd = '/galleries/create';
+$pathPhotos = '/photos';
+$pathGalleries = '/galleries';
+$pathSubmissions = '/submissions';
+$pathLogin = '/auth/login';
+
+if (substr($path, 0, strlen($pathPhotosAdd)) == $pathPhotosAdd) {
+  $activeAdd = 'active';
+}
+elseif (substr($path, 0, strlen($pathGalleriesAdd)) == $pathGalleriesAdd) {
+  $activeAdd = 'active';
+}
+elseif (substr($path, 0, strlen($pathPhotos)) == $pathPhotos) {
+  $activePhotos = 'active';
+}
+elseif (substr($path, 0, strlen($pathGalleries)) == $pathGalleries) {
+  $activeGalleries = 'active';
+}
+elseif (substr($path, 0, strlen($pathSubmissions)) == $pathSubmissions) {
+  $activeSubmissions = 'active';
+}
+elseif (substr($path, 0, strlen($pathLogin)) == $pathLogin) {
+  $activeLogin = 'active';
+}
 ?>
 
 <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -77,31 +67,31 @@ elseif ($path == '/auth/login') {
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li class="dropdown {{$activePhotos}}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"
           role="button" aria-haspopup="true" aria-expanded="false">
           PHOTOS <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="{{$photos}}"><a href="{{$photosLink}}">DISPLAY</a></li>
-            <li class="{{$photosList}} visible-lg-inline"><a href="{{$photosListLink}}">LIST</a></li>
-            <li class="{{$photosNewLink}} visible-lg-inline"><a href="{{$photosNewLink}}">NEW</a></li>
+            <li><a href="{{$photosLink}}">DISPLAY</a></li>
+            <li><a href="{{$photosListLink}}">LIST</a></li>
+            <li><a href="{{$photosNewLink}}">NEW</a></li>
           </ul>
         </li>
-        <li class="{{$galleries}}"><a href="{{$galleriesLink}}">GALLERIES</a></li>
-        <li class="{{$submissions}}"><a href="{{$submissionsLink}}">SUBMISSIONS</a></li>
-        <li class="dropdown">
+        <li class="{{$activeGalleries}}"><a href="{{$galleriesLink}}">GALLERIES</a></li>
+        <li class="{{$activeSubmissions}}"><a href="{{$submissionsLink}}">SUBMISSIONS</a></li>
+        <li class="dropdown {{$activeAdd}}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"
           role="button" aria-haspopup="true" aria-expanded="false">
           ADD <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li class="{{$photosCreate}}"><a href="{{$photosCreateLink}}">ADD PHOTOS</a></li>
-            <li class="{{$galleriesCreate}}"><a href="{{$galleriesCreateLink}}">ADD GALLERY</a></li>
+            <li><a href="{{$photosCreateLink}}">ADD PHOTOS</a></li>
+            <li><a href="{{$galleriesCreateLink}}">ADD GALLERY</a></li>
           </ul>
         </li>
         @if (Auth::check())
         <li><a href="{{$logoutLink}}">LOGOUT</a></li>
         @else
-        <li class="{{$login}}"><a href="{{$loginLink}}">LOGIN</a></li>
+        <li class="{{$activeLogin}}"><a href="{{$loginLink}}">LOGIN</a></li>
         @endif
       </ul>
     </div><!-- /.navbar-collapse -->
