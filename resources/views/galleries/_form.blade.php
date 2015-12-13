@@ -22,21 +22,21 @@
 <div class="row">
   <div class="checkbox-line">
     <div class="col-md-3">
-      {!! Form::hidden('quality', false) !!} 
-      {!! Form::checkbox('quality') !!} Quality
+      {!! Form::hidden('quality', false) !!}
+      {!! Form::checkbox('quality') !!} Published
     </div>  
     <div class="col-md-3">
-      {!! Form::hidden('promo', false) !!} 
+      {!! Form::hidden('promo', false) !!}
       {!! Form::checkbox('promo') !!} Promo
-    </div> 
+    </div>
     <div class="col-md-3">
-      {!! Form::hidden('accepts_members', false) !!} 
+      {!! Form::hidden('accepts_members', false) !!}
       {!! Form::checkbox('accepts_members') !!} Accepts members
-    </div> 
+    </div>
     <div class="col-md-3">
-      {!! Form::hidden('member', false) !!} 
+      {!! Form::hidden('member', false) !!}
       {!! Form::checkbox('member') !!} Member
-    </div> 
+    </div>
   </div>
 </div>
 
@@ -44,7 +44,6 @@
   <div class="delete-buttons">
     <div class="col-sm-3 col-md-2">
       {!! Form::submit($submitButtonText, ['class' => 'btn btn-primary form-control']) !!}
-    </div>  
+    </div>
   </div>
 </div>
-

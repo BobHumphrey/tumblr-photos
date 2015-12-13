@@ -57,6 +57,7 @@ class CreateGalleriesGrid extends Job implements SelfHandling
 
     $additionalColumns = [
       (new FieldConfig('quality'))
+      ->setLabel('Published')
       ->setCallback(function ($val) {
         if ($val) {
           return '<span class="fa fa-check"></span>&nbsp;';

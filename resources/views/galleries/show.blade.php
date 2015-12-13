@@ -34,7 +34,7 @@ $no_submissions = showCheckMark($gallery->no_submissions);
       <td><a href="{{$gallery->url}}" target="_blank">{{$gallery->url}}</a></td>
     </tr>
     <tr>
-      <td>Quality</td>
+      <td>Published</td>
       <td>{!!$quality!!}</td>
     </tr>
     <tr>

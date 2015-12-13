@@ -2604,6 +2604,9 @@ img {
 .submissions-grid td, .submissions-grid th {
   text-align: center; }
 
+svg {
+  fill: red; }
+
 /*# sourceMappingURL=app.css.map */
 
 /*# sourceMappingURL=all.css.map */
