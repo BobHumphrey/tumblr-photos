@@ -7,11 +7,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Photo;
 use App\Submission;
+use DB;
+use Carbon\Carbon;
 
 class PhotosController extends Controller {
 
   public function __construct() {
-    $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update', 'delete', 'destroy']]);
+    $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update', 'delete', 'destroy', 'likes']]);
   }
 
   /**
@@ -134,6 +136,69 @@ class PhotosController extends Controller {
         'grid' => $grids['grid'],
         'newOnly' => $newOnly,
       ]);
+    }
+
+    public function likes() {
+      $display = '';
+      // Authenticate via OAuth
+      $client = new \Tumblr\API\Client(
+        env('BH_TUMBLR_CONSUMER_KEY'),
+        env('BH_TUMBLR_CONSUMER_SECRET'),
+        env('BH_TUMBLR_TOKEN'),
+        env('BH_TUMBLR_TOKEN_SECRET')
+      );
+
+      $continue = TRUE;
+      $offset = 0;
+      while($continue) {
+        // Make the request
+        $reply = $client->getBlogPosts('bobhumphreyphotography', array('offset' => $offset, 'reblog_info' => true, 'notes_info' => true));
+        $posts = $reply->posts;
+        if(count($posts)) {
+          foreach ($posts as $post) {
+            $note_count = 0;
+            $note_count_last10 = 0;
+            $note_count_last30 = 0;
+            if (property_exists($post, 'notes')) {
+              $notes = $post->notes;
+              foreach ($notes as $note) {
+                $timestamp = $note->timestamp;
+                $noteTime = Carbon::createFromTimestamp($timestamp);
+                $daysAgo = $noteTime->diffInDays();
+                $note_count++;
+                if ($daysAgo <= 10) {
+                  $note_count_last10++;
+                }
+                if ($daysAgo <= 30) {
+                  $note_count_last30++;
+                }
+              }
+            }
+            $post_url = $post->post_url;
+            $photo = DB::table('photo')->where('url', $post_url)->first();
+            if ($photo) {
+              DB::table('photo')
+              ->where('url', $post_url)
+              ->update([
+                'notes' => $note_count,
+                'notes_last30' => $note_count_last30,
+                'notes_last10' => $note_count_last10,
+              ]);
+            }
+            //$notes_count = count($notes);
+            //\Debugbar::info($photo->url);
+            \Debugbar::info($note_count . '--' . $note_count_last30 . '--' . $note_count_last10);
+
+          }
+          $offset = $offset + 20;
+        }
+        else {
+          $continue = FALSE;
+        }
+      }
+      //\Debugbar::info($posts);
+
+      return view('photos.likes');
     }
 
   }

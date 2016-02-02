@@ -26,18 +26,6 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          {!! Form::label('notes', 'Notes:') !!}
-          {!! Form::text('notes', null, ['class' => 'form-control']) !!}
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          {!! Form::label('other_notes', 'Other Notes:') !!}
-          {!! Form::text('other_notes', null, ['class' => 'form-control']) !!}
-        </div>
-      </div>
     </div>
   </div>
 </div>

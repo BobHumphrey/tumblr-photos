@@ -12,8 +12,8 @@ class Photo extends Model {
     'url',
     'posted_date',
     'notes',
-    'other_notes',
-    'total_notes',
+    'notes_last30',
+    'notes_last10',
   ];
 
   // relationships
@@ -44,6 +44,7 @@ class Photo extends Model {
     return convertToMMDDYYYY($value);
   }
 
+/*
   public function setNotesAttribute($value) {
     if (isset($this->attributes['other_notes'])) {
       $otherNotes = $this->attributes['other_notes'];
@@ -65,5 +66,6 @@ class Photo extends Model {
     $this->attributes['other_notes'] = $value;
     $this->attributes['total_notes'] = $value + $notes;
   }
+  */
 
 }

@@ -64,12 +64,12 @@ Photo
         <td>{{$photo->notes}}</td>
       </tr>
       <tr>
-        <td>Other Notes</td>
-        <td>{{$photo->other_notes}}</td>
+        <td>Last 30 Days</td>
+        <td>{{$photo->notes_last30}}</td>
       </tr>
       <tr>
-        <td>Total Notes</td>
-        <td>{{$photo->total_notes}}</td>
+        <td>Last 10 Days</td>
+        <td>{{$photo->notes_last10}}</td>
       </tr>
       <tr>
         <td>Submitted</td>

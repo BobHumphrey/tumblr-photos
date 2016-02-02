@@ -68,10 +68,13 @@ class CreatePhotoGrid extends Job implements SelfHandling
       (new FieldConfig('posted_date'))
       ->setSortable(true)
       ->setSorting(Grid::SORT_DESC),
-      (new FieldConfig('notes')),
-      (new FieldConfig('other_notes')),
-      (new FieldConfig('total_notes'))
-      ->setSortable(true),
+      (new FieldConfig('notes'))->setSortable(true),
+      (new FieldConfig('notes_last30'))
+      ->setSortable(true)
+      ->setLabel('Last 30 Days'),
+      (new FieldConfig('notes_last10'))
+      ->setSortable(true)
+      ->setLabel('Last 10 Days'),
     ];
 
     $gridCfg = (new GridConfig())->setDataProvider(

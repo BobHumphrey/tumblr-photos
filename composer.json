@@ -10,7 +10,8 @@
         "nayjest/grids": "^0.9.5",
         "illuminate/html": "^5.0",
         "barryvdh/laravel-debugbar": "^2.0",
-        "intervention/image": "^2.3"
+        "intervention/image": "^2.3",
+        "tumblr/tumblr": "^0.2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

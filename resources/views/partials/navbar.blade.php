@@ -3,6 +3,7 @@
 $galleriesLink = action('GalleriesController@index');
 $galleriesCreateLink = action('GalleriesController@create');
 $photosLink = url('photos/display');
+$photosLikesLink = action('PhotosController@likes');
 $photosListLink = action('PhotosController@listing');
 $photosNewLink = url('photos/list/new');
 $photosCreateLink = action('PhotosController@create');
@@ -73,6 +74,7 @@ elseif (substr($path, 0, strlen($pathLogin)) == $pathLogin) {
           PHOTOS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{$photosLink}}">DISPLAY</a></li>
+            <li><a href="{{$photosLikesLink}}">LIKES</a></li>
             <li><a href="{{$photosListLink}}">LIST</a></li>
             <li><a href="{{$photosNewLink}}">NEW</a></li>
           </ul>

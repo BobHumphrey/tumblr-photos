@@ -21,6 +21,8 @@ Route::get('galleries/delete/{id}', 'GalleriesController@delete');
 
 // Extra route to provide alternate list of photos
 Route::get('photos/list/{newOnly?}', 'PhotosController@listing');
+// Extra route to display tumblr likes
+Route::get('photos/likes', 'PhotosController@likes');
 // Extra route to control index paging
 Route::get('photos/display/{page?}', 'PhotosController@index');
 
