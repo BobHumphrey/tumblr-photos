@@ -6,9 +6,11 @@ use Illuminate\Console\Command;
 use App\Photo;
 use DB;
 use Carbon\Carbon;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class TumblrUpdate extends Command
 {
+  use DispatchesJobs ;
   /**
   * The name and signature of the console command.
   *
@@ -48,6 +50,9 @@ class TumblrUpdate extends Command
     env('BH_TUMBLR_TOKEN_SECRET')
   );
 
+  $this->dispatch(new \App\Jobs\UpdatePhotoNotes($client));
+
+/*
   // Update the current notes for each post.
   $continue = TRUE;
   $offset = 0;
@@ -59,7 +64,7 @@ class TumblrUpdate extends Command
     $posts = $reply->posts;
     if(count($posts)) {
       foreach ($posts as $post) {
-        $note_count = 0;
+        $note_count = $post->note_count;
         $note_count_last10 = 0;
         $note_count_last30 = 0;
         if (property_exists($post, 'notes')) {
@@ -71,7 +76,6 @@ class TumblrUpdate extends Command
             $timestamp = $note->timestamp;
             $noteTime = Carbon::createFromTimestamp($timestamp);
             $daysAgo = $noteTime->diffInDays();
-            $note_count++;
             if ($daysAgo <= 10) {
               $note_count_last10++;
             }
@@ -99,6 +103,7 @@ class TumblrUpdate extends Command
       $continue = FALSE;
     }
   }
+  */
 }
 
 // Next task.
