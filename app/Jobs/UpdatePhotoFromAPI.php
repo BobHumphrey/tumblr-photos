@@ -4,12 +4,12 @@ namespace App\Jobs;
 
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
-use App\Gallery;
 use DB;
+use App\Photo;
 use Carbon\Carbon;
 
 
-class UpdatePhotoNotes extends Job implements SelfHandling
+class UpdatePhotoFromAPI extends Job implements SelfHandling
 {
     protected $client;
   /**
@@ -40,9 +40,9 @@ class UpdatePhotoNotes extends Job implements SelfHandling
       $posts = $reply->posts;
       if(count($posts)) {
         foreach ($posts as $post) {
-          $note_count = $post->note_count;
-          $note_count_last10 = 0;
-          $note_count_last30 = 0;
+          $noteCount = $post->note_count;
+          $noteCountLast10 = 0;
+          $noteCountLast30 = 0;
           if (property_exists($post, 'notes')) {
             // Count each note.  Check the date of the note and add 1 to the
             // appropriate counters:  total note count, notes added in the last
@@ -53,25 +53,47 @@ class UpdatePhotoNotes extends Job implements SelfHandling
               $noteTime = Carbon::createFromTimestamp($timestamp);
               $daysAgo = $noteTime->diffInDays();
               if ($daysAgo <= 10) {
-                $note_count_last10++;
+                $noteCountLast10++;
               }
               if ($daysAgo <= 30) {
-                $note_count_last30++;
+                $noteCountLast30++;
               }
             }
           }
           // Find the record in the photo table and update it.
-          $post_url = $post->post_url;
-          $photo = DB::table('photo')->where('url', $post_url)->first();
+          $postUrl = $post->post_url;
+          $photo = DB::table('photo')->where('url', $postUrl)->first();
           if ($photo) {
             DB::table('photo')
-            ->where('url', $post_url)
+            ->where('url', $postUrl)
             ->update([
-              'notes' => $note_count,
-              'notes_last30' => $note_count_last30,
-              'notes_last10' => $note_count_last10,
+              'notes' => $noteCount,
+              'notes_last30' => $noteCountLast30,
+              'notes_last10' => $noteCountLast10,
             ]);
           }
+          // Add new posts to the photo table.
+          else {
+            $photoDirectory = env('BH_PHOTO_DIRECTORY');
+            $fileExtension = 'jpg';
+            $fileName =  str_random(10) . '.' . $fileExtension;
+            $imageUrl = $post->photos[0]->alt_sizes[0]->url;
+            $image = \Image::make($imageUrl);
+            $image->resize(800, 800);
+            $image->save($photoDirectory . '/photo_files/normal/'. $fileName);
+            $image->resize(100, 100);
+            $image->save($photoDirectory . '/photo_files/thumbnail/'. $fileName);
+            $postedDate = substr($post->date, 0, 10);
+            DB::table('photo')->insert([
+              'file_name' => $fileName,
+              'url' => $postUrl,
+              'posted_date' => $postedDate,
+              'notes' => $noteCount,
+              'notes_last30' => $noteCountLast30,
+              'notes_last10' => $noteCountLast10,
+            ]);
+        }
+        // next post
         }
         $offset = $offset + 20;
       }
