@@ -31,6 +31,8 @@ class CreateGalleriesGrid extends Job implements SelfHandling
   */
   public function handle()
   {
+    $galleriesQueryBuilder = Gallery::where('ignore_this_site', '=', 0);
+
     $narrowColumns = [
       (new FieldConfig('id'))
       ->setLabel('Actions')
@@ -56,27 +58,15 @@ class CreateGalleriesGrid extends Job implements SelfHandling
     ];
 
     $additionalColumns = [
-      (new FieldConfig('quality'))
-      ->setLabel('Published')
-      ->setCallback(function ($val) {
-        if ($val) {
-          return '<span class="fa fa-check"></span>&nbsp;';
-        }
-      }),
-      (new FieldConfig('promo'))
-      ->setCallback(function ($val) {
-        if ($val) {
-          return '<span class="fa fa-check"></span>&nbsp;';
-        }
-      }),
+      (new FieldConfig('reblogs'))
+      ->setSortable(true),
     ];
 
     $wideColumns = array_merge($narrowColumns, $additionalColumns);
 
     $narrowCfg = (new GridConfig())->setDataProvider(
     new EloquentDataProvider(
-    (new Gallery)
-    ->newQuery()
+    ($galleriesQueryBuilder)
     )
     )
     ->setColumns($narrowColumns);
@@ -84,8 +74,7 @@ class CreateGalleriesGrid extends Job implements SelfHandling
 
     $wideCfg = (new GridConfig())->setDataProvider(
     new EloquentDataProvider(
-    (new Gallery)
-    ->newQuery()
+    ($galleriesQueryBuilder)
     )
     )
     ->setColumns($wideColumns);

@@ -49,9 +49,7 @@ class CreateSubmissionsGrid extends Job implements SelfHandling
         . '<a href="' . $hrefUpdate . '">' . $iconUpdate . '</a>&emsp;'
         . '<a href="' . $hrefDelete . '">' . $iconDelete . '</a>';
       }),
-      (new FieldConfig('submitted_date'))
-      ->setSortable(true)
-      ->setSorting(Grid::SORT_DESC),
+
     ];
 
     $photoColumn = [
@@ -67,29 +65,22 @@ class CreateSubmissionsGrid extends Job implements SelfHandling
 
     $galleryColumn = [
       (new FieldConfig('gallery.id'))
-      ->setLabel('Gallery')
+      ->setLabel('Site')
       ->setCallback(function ($val, EloquentDataRow $row) {
         $rowData = $row->getSrc();
         $hrefShow = action('GalleriesController@show', [$val]);
         return '<a href="' . $hrefShow . '">' . $rowData->gallery->name . '</a>';
       }),
+
+      (new FieldConfig('submitted_date')),
+      //->setSortable(true)
+      //->setSorting(Grid::SORT_DESC),
     ];
 
     $additionalColumns = [
-      (new FieldConfig('published_flag'))
-      ->setLabel('Published')
-      ->setCallback(function ($val) {
-        if ($val) {
-          return '<span class="fa fa-check"></span>&nbsp;';
-        }
-      }),
-      (new FieldConfig('published_not_submitted'))
-      ->setLabel('PNS')
-      ->setCallback(function ($val) {
-        if ($val) {
-          return '<span class="fa fa-check"></span>&nbsp;';
-        }
-      }),
+      (new FieldConfig)->setName('published_date')->setLabel('Reblog Date'),
+      //->setSortable(true)
+      //->setSorting(Grid::SORT_DESC),
     ];
 
     switch($this->page) {

@@ -6,7 +6,7 @@
 
 @section('pageTitle')
 
-Submissions
+Submissions and Reblogs
 
 @stop
 

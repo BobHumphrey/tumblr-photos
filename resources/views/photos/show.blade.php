@@ -26,7 +26,7 @@ Photo
     'method' => 'GET',
     'action' => ['SubmissionsController@create', $photo->id]
     ]) !!}
-    {!! Form::submit('Add Submission', ['class' => 'btn btn-primary btn-block']) !!}
+    {!! Form::submit('Add Submission/Reblog', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
 
     {!! Form::open([
@@ -72,18 +72,6 @@ Photo
         <td>{{$photo->notes_last10}}</td>
       </tr>
       <tr>
-        <td>Submitted</td>
-        <td>{{$photo->submitted}}</td>
-      </tr>
-      <tr>
-        <td>Published</td>
-        <td>{{$photo->published}}</td>
-      </tr>
-      <tr>
-        <td>Published Not Submitted</td>
-        <td>{{$photo->published_not_submitted}}</td>
-      </tr>
-      <tr>
         <td>Created Date</td>
         <td>{{$photo->created_at}}</td>
       </tr>
@@ -94,7 +82,7 @@ Photo
     </table>
 
     <br>
-    <h3>Submissions</h3>
+    <h3>Reblogs</h3>
     <div class="visible-xs-block visible-sm-block submissions-grid">
       <?= $narrowGrid ?>
     </div>

@@ -26,9 +26,8 @@ class SubmissionRequest extends Request
         return [
             'gallery_id' => 'required',
             'photo_id' => 'required',
-            'submitted_date' => 'required|date_format:m-d-Y',
+            'submitted_date' => 'date_format:m-d-Y',
             'published_date' => 'date_format:m-d-Y',
         ];
     }
 }
-

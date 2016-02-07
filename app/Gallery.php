@@ -10,16 +10,11 @@ class Gallery extends Model {
   protected $fillable = [
     'name',
     'url',
-    'quality',
-    'promo',
-    'accepts_members',
-    'member',
-    'membership_date',
-    'no_submissions',
+    'ignore_this_site',
   ];
 
   // relationships
-  
+
   public function submission(){
     return $this->hasMany('App\Submission');
   }

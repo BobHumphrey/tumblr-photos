@@ -63,13 +63,15 @@ class Submission extends Model {
   public function scopeGallerySubmissions($query, $id) {
     return $query->leftJoin('photo', 'submission.photo_id', '=', 'photo.id')
     ->leftJoin('gallery', 'submission.gallery_id', '=', 'gallery.id')
-    ->where('submission.gallery_id', $id);
+    ->where('submission.gallery_id', $id)
+    ->orderBy('sort_date', 'desc');
   }
 
   public function scopePhotoSubmissions($query, $id) {
     return $query->leftJoin('photo', 'submission.photo_id', '=', 'photo.id')
     ->leftJoin('gallery', 'submission.gallery_id', '=', 'gallery.id')
-    ->where('submission.photo_id', $id);
+    ->where('submission.photo_id', $id)
+    ->orderBy('sort_date', 'desc');
   }
 
 }

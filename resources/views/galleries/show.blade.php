@@ -1,5 +1,5 @@
 <?php
-$quality = showCheckMark($gallery->quality);
+$ignore = showCheckMark($gallery->ignore_this_site);
 $promo = showCheckMark($gallery->promo);
 $accepts_members = showCheckMark($gallery->accepts_members);
 $member = showCheckMark($gallery->member);
@@ -34,28 +34,12 @@ $no_submissions = showCheckMark($gallery->no_submissions);
       <td><a href="{{$gallery->url}}" target="_blank">{{$gallery->url}}</a></td>
     </tr>
     <tr>
-      <td>Published</td>
-      <td>{!!$quality!!}</td>
+      <td>Reblogs</td>
+      <td>{{$gallery->reblogs}}</td>
     </tr>
     <tr>
-      <td>Promo</td>
-      <td>{!!$promo!!}</td>
-    </tr>
-    <tr>
-      <td>Accepts Members</td>
-      <td>{!!$accepts_members!!}</td>
-    </tr>
-    <tr>
-      <td>Member</td>
-      <td>{!!$member!!}</td>
-    </tr>
-    <tr>
-      <td>Membership Date</td>
-      <td>{{$gallery->membership_date}}</td>
-    </tr>
-    <tr>
-      <td>No submissions</td>
-      <td>{!!$no_submissions!!}</td>
+      <td>Ignore This Site</td>
+      <td>{!!$ignore!!}</td>
     </tr>
     <tr>
       <td>Created Date</td>
@@ -68,7 +52,7 @@ $no_submissions = showCheckMark($gallery->no_submissions);
   </table>
 
   <br>
-  <h3>Submissions</h3>
+  <h3>Reblogs</h3>
   <div class="submissions-grid">
     <div class="visible-xs-block visible-sm-block submissions-grid">
       <?= $narrowGrid ?>

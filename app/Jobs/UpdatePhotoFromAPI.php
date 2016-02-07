@@ -5,13 +5,12 @@ namespace App\Jobs;
 use App\Jobs\Job;
 use Illuminate\Contracts\Bus\SelfHandling;
 use DB;
-use App\Photo;
 use Carbon\Carbon;
 
 
 class UpdatePhotoFromAPI extends Job implements SelfHandling
 {
-    protected $client;
+  protected $client;
   /**
   * Create a new job instance.
   *

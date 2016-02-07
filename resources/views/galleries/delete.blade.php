@@ -2,7 +2,7 @@
 
 @section('pageTitle')
 
-Delete Gallery
+Delete Site
 
 @stop
 

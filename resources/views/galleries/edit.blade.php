@@ -2,7 +2,7 @@
 
 @section('pageTitle')
 
-Edit Gallery
+Edit Sites
 
 @stop
 
@@ -14,7 +14,7 @@ Edit Gallery
     'method' => 'PATCH',
     'action' => ['GalleriesController@update', $gallery->id]
   ]) !!}
-    @include('galleries._form', ['submitButtonText' => 'Update Gallery'])
+    @include('galleries._form', ['submitButtonText' => 'Update Site'])
   {!! Form::close() !!}
 
 

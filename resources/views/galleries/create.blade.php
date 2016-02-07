@@ -2,7 +2,7 @@
 
 @section('pageTitle')
 
-Add New Gallery
+Add New Site
 
 @stop
 

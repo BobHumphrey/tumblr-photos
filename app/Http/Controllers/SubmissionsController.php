@@ -29,7 +29,7 @@ class SubmissionsController extends Controller {
   * @return Response
   */
   public function index(Request $request) {
-    $submissions = Submission::allSubmissions();
+    $submissions = Submission::allSubmissions()->orderBy('sort_date', 'desc');
     $grids = $this->dispatchFrom('App\Jobs\CreateSubmissionsGrid', $request,
     ['submissions' => $submissions, 'page' => 'submissions']);
     return view('submissions.index')->with([

@@ -2,7 +2,7 @@
 
 @section('pageTitle')
 
-Edit Submission
+Edit Submission/Reblog
 
 @stop
 
@@ -14,7 +14,7 @@ Edit Submission
     'method' => 'PATCH',
     'action' => ['SubmissionsController@update', $submission->submission_id]
   ]) !!}
-    @include('submissions._form', ['submitButtonText' => 'Update Submission'])
+    @include('submissions._form', ['submitButtonText' => 'Update Submission/Reblog'])
   {!! Form::close() !!}
 
 

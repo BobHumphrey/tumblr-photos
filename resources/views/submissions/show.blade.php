@@ -10,7 +10,7 @@ $galleryUrl = action('GalleriesController@show', ['id' => $submission->gallery_i
 
 @section('pageTitle')
 
-Submission
+Submission / Reblog
 
 @stop
 
@@ -23,14 +23,14 @@ Submission
     'method' => 'GET',
     'action' => ['SubmissionsController@edit', $submission->submission_id]
     ]) !!}
-    {!! Form::submit('Update Submission', ['class' => 'btn btn-primary btn-block']) !!}
+    {!! Form::submit('Update Submission/Reblog', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
 
     {!! Form::open([
     'method' => 'GET',
     'action' => ['PhotosController@delete', $submission->submission_id]
     ]) !!}
-    {!! Form::submit('Delete Submission', ['class' => 'btn btn-primary btn-block']) !!}
+    {!! Form::submit('Delete Submission/Reblog', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
   </div>
 
@@ -49,16 +49,8 @@ Submission
         <td>{{$submission->submitted_date}}</td>
       </tr>
       <tr>
-        <td>Published Date</td>
+        <td>Reblog Date</td>
         <td>{{$submission->published_date}}</td>
-      </tr>
-      <tr>
-        <td>Published</td>
-        <td>{!!$published!!}</td>
-      </tr>
-      <tr>
-        <td>Published Not Submitted</td>
-        <td>{!!$publishedNotSubmitted!!}</td>
       </tr>
     </table>
   </div>

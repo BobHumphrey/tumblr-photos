@@ -79,15 +79,15 @@ elseif (substr($path, 0, strlen($pathLogin)) == $pathLogin) {
             <li><a href="{{$photosNewLink}}">NEW</a></li>
           </ul>
         </li>
-        <li class="{{$activeGalleries}}"><a href="{{$galleriesLink}}">GALLERIES</a></li>
-        <li class="{{$activeSubmissions}}"><a href="{{$submissionsLink}}">SUBMISSIONS</a></li>
+        <li class="{{$activeGalleries}}"><a href="{{$galleriesLink}}">SITES</a></li>
+        <li class="{{$activeSubmissions}}"><a href="{{$submissionsLink}}">REBLOGS</a></li>
         <li class="dropdown {{$activeAdd}}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"
           role="button" aria-haspopup="true" aria-expanded="false">
           ADD <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{$photosCreateLink}}">ADD PHOTOS</a></li>
-            <li><a href="{{$galleriesCreateLink}}">ADD GALLERY</a></li>
+            <li><a href="{{$galleriesCreateLink}}">ADD SITE</a></li>
           </ul>
         </li>
         @if (Auth::check())

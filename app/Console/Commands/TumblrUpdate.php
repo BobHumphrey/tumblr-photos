@@ -52,6 +52,10 @@ class TumblrUpdate extends Command
 
     $this->dispatch(new \App\Jobs\UpdatePhotoFromAPI($client));
 
+    $this->dispatch(new \App\Jobs\UpdateSubmissionsFromAPI($client));
+
+    //$this->dispatch(new \App\Jobs\UpdateFollowersFromAPI($client));
+
   }
 
 

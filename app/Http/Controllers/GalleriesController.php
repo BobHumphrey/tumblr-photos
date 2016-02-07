@@ -58,7 +58,7 @@ class GalleriesController extends Controller {
   public function show($id) {
     $gallery = Gallery::findOrFail($id);
     $submissions = Submission::gallerySubmissions($id);
-    $subCount = $submissions->count();
+    $subCount = $gallery->reblogs;
     if ($subCount) {
       $grids = $this->dispatchFrom('App\Jobs\CreateSubmissionsGrid', new Request,
       ['submissions' => $submissions, 'page' => 'gallery']);

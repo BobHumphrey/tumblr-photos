@@ -2,13 +2,13 @@
 
 @section('pageTitle')
 
-Delete Submission
+Delete Submission/Reblog
 
 @stop
 
 @section('content')
 
-  <h3>Do you really want to delete submission ID {{$submission->submission_id}}?</h3>
+  <h3>Do you really want to delete submission/reblog ID {{$submission->submission_id}}?</h3>
 
   <div class="row">
     <div class="delete-buttons">
@@ -17,7 +17,7 @@ Delete Submission
           'method' => 'DELETE',
           'action' => ['SubmissionsController@destroy', $submission->submission_id]
         ]) !!}
-          {!! Form::submit('Delete Submission', ['class' => 'btn btn-primary btn-block']) !!}
+          {!! Form::submit('Delete Reblog', ['class' => 'btn btn-primary btn-block']) !!}
         {!! Form::close() !!}
       </div>
       <div class="col-sm-3 col-md-2">
