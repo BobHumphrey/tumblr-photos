@@ -1,9 +1,9 @@
 <?php
 $ignore = showCheckMark($gallery->ignore_this_site);
-$promo = showCheckMark($gallery->promo);
-$accepts_members = showCheckMark($gallery->accepts_members);
-$member = showCheckMark($gallery->member);
-$no_submissions = showCheckMark($gallery->no_submissions);
+$accepts_submissions = showCheckMark($gallery->accepts_submissions);
+$reblog_posts = showCheckMark($gallery->reblog_posts);
+
+//$will_reblog = showCheckMark($gallery->will_reblog);
 ?>
 
 @extends('app')
@@ -36,6 +36,14 @@ $no_submissions = showCheckMark($gallery->no_submissions);
     <tr>
       <td>Reblogs</td>
       <td>{{$gallery->reblogs}}</td>
+    </tr>
+    <tr>
+      <td>Accepts Submissions</td>
+      <td>{!!$accepts_submissions!!}</td>
+    </tr>
+    <tr>
+      <td>Will Reblog Posts</td>
+      <td>{!!$reblog_posts!!}</td>
     </tr>
     <tr>
       <td>Ignore This Site</td>

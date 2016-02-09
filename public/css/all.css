@@ -2499,11 +2499,17 @@ a:hover {
     margin-top: 0; } }
 
 .navbar {
-  margin-top: 25px; }
+  margin-bottom: 10px; }
 
 .navbar-brand {
-  padding: 0 15px 70px 15px;
-  margin-top: -15px; }
+  padding: 0 15px 0 25px;
+  margin-top: 10px; }
+
+.navbar-brand img {
+  width: 50px; }
+
+.navbar-nav > li > a {
+  padding-top: 10px; }
 
 .navbar-default,
 .navbar-default .navbar-collapse,
@@ -2542,6 +2548,10 @@ a:hover {
 
 .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
   color: #0D47A1; }
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    padding-top: 25px; } }
 
 footer {
   padding-bottom: 100px;
@@ -2603,9 +2613,6 @@ img {
 .photos-grid td, .photos-grid th,
 .submissions-grid td, .submissions-grid th {
   text-align: center; }
-
-svg {
-  fill: red; }
 
 /*# sourceMappingURL=app.css.map */
 

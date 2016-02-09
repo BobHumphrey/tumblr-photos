@@ -58,6 +58,20 @@ class CreateGalleriesGrid extends Job implements SelfHandling
     ];
 
     $additionalColumns = [
+      (new FieldConfig('accepts_submissions'))
+      ->setLabel('AS')
+      ->setCallback(function ($val) {
+        if ($val) {
+          return '<span class="fa fa-check"></span>&nbsp;';
+        }
+      }),
+      (new FieldConfig('reblog_posts'))
+      ->setLabel('RP')
+      ->setCallback(function ($val) {
+        if ($val) {
+          return '<span class="fa fa-check"></span>&nbsp;';
+        }
+      }),
       (new FieldConfig('reblogs'))
       ->setSortable(true),
     ];

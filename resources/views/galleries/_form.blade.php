@@ -10,9 +10,17 @@
 <div class="row">
   <div class="checkbox-line">
     <div class="col-md-3">
+      {!! Form::hidden('accepts_submissions', false) !!}
+      {!! Form::checkbox('accepts_submissions') !!} Accepts Submissions
+    </div>
+    <div class="col-md-3">
+      {!! Form::hidden('reblog_posts', false) !!}
+      {!! Form::checkbox('reblog_posts') !!} Will Reblog Posts
+    </div>
+    <div class="col-md-3">
       {!! Form::hidden('ignore_this_site', false) !!}
       {!! Form::checkbox('ignore_this_site') !!} Ignore
-    </div>  
+    </div>
   </div>
 </div>
 

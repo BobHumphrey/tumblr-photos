@@ -42,7 +42,17 @@ class TumblrUpdate extends Command
   */
   public function handle()
   {
+
+    // log the start time
+
+    $dt = Carbon::now();
+    $startTime = $dt->toDateTimeString();
+    $id = DB::table('scheduled_job_log')
+    ->insertGetId(['start_time' => $startTime]
+    );
+
     // Authenticate
+
     $client = new \Tumblr\API\Client(
       env('BH_TUMBLR_CONSUMER_KEY'),
       env('BH_TUMBLR_CONSUMER_SECRET'),
@@ -54,7 +64,13 @@ class TumblrUpdate extends Command
 
     $this->dispatch(new \App\Jobs\UpdateSubmissionsFromAPI($client));
 
-    //$this->dispatch(new \App\Jobs\UpdateFollowersFromAPI($client));
+    // log the end time
+
+    $dt = Carbon::now();
+    $endTime = $dt->toDateTimeString();
+    $id = DB::table('scheduled_job_log')
+    ->where('id', $id)->update(['end_time' => $endTime]
+    );
 
   }
 

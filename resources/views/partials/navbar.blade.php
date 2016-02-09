@@ -74,9 +74,7 @@ elseif (substr($path, 0, strlen($pathLogin)) == $pathLogin) {
           PHOTOS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="{{$photosLink}}">DISPLAY</a></li>
-            <li><a href="{{$photosLikesLink}}">LIKES</a></li>
             <li><a href="{{$photosListLink}}">LIST</a></li>
-            <li><a href="{{$photosNewLink}}">NEW</a></li>
           </ul>
         </li>
         <li class="{{$activeGalleries}}"><a href="{{$galleriesLink}}">SITES</a></li>

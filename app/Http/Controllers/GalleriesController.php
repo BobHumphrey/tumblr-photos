@@ -94,6 +94,7 @@ class GalleriesController extends Controller {
   * @return Response
   */
   public function update($id, Requests\GalleryRequest $request) {
+    \Log::info($request);
     $gallery = Gallery::findOrFail($id);
     $gallery->update($request->all());
     flashMessage("The gallery has been updated.", "alert-success");

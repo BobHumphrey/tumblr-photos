@@ -20,6 +20,7 @@ elixir(function(mix) {
     mix.styles([
       'libs/bootstrap-3-3-5.min.css',
       'libs/bootstrap-datetimepicker-4.css',
+      'libs/font-awesome.css',
       'app.css'
     ]);
 

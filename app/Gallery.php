@@ -11,6 +11,8 @@ class Gallery extends Model {
     'name',
     'url',
     'ignore_this_site',
+    'accepts_submissions',
+    'reblog_posts',
   ];
 
   // relationships
