@@ -10,12 +10,14 @@ $photosCreateLink = action('PhotosController@create');
 $submissionsLink = action('SubmissionsController@index');
 $loginLink = action('Auth\AuthController@getLogin');
 $logoutLink = action('Auth\AuthController@getLogout');
+$scheduledJobLogLink = action('AdminController@index');
 // Set the current page as active.
 $activePhotos = '';
 $activeGalleries = '';
 $activeSubmissions = '';
 $activeAdd = '';
 $activeLogin = '';
+$activeAdmin = '';
 $path = ($_SERVER['REQUEST_URI']);
 
 $pathPhotosAdd = '/photos/create';
@@ -88,11 +90,20 @@ elseif (substr($path, 0, strlen($pathLogin)) == $pathLogin) {
             <li><a href="{{$galleriesCreateLink}}">ADD SITE</a></li>
           </ul>
         </li>
-        @if (Auth::check())
-        <li><a href="{{$logoutLink}}">LOGOUT</a></li>
-        @else
-        <li class="{{$activeLogin}}"><a href="{{$loginLink}}">LOGIN</a></li>
-        @endif
+        <li class="dropdown {{$activeAdmin}}">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+          role="button" aria-haspopup="true" aria-expanded="false">
+          ADMIN <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            @if (Auth::check())
+            <li><a href="{{$logoutLink}}">LOGOUT</a></li>
+            @else
+            <li class="{{$activeLogin}}"><a href="{{$loginLink}}">LOGIN</a></li>
+            @endif
+            <li><a href="{{$scheduledJobLogLink}}">SCHEDULED JOB LOG</a></li>
+          </ul>
+        </li>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

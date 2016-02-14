@@ -37,7 +37,10 @@ Route::get('submissions/delete/{id}', 'SubmissionsController@delete');
 // Extra route to handle creating submission from a photo
 Route::get('submissions/create/{id}', 'SubmissionsController@create');
 
-// Authentication routes…
+// Authentication routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Admin routes
+Route::get('admin/index', 'AdminController@index');
