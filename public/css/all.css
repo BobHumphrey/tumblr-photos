@@ -2528,7 +2528,8 @@ a:hover {
 .navbar-default .navbar-nav > .active > a:focus,
 .navbar-default .navbar-nav > .active > a:hover {
   background: #E1F5FE;
-  color: #0D47A1; }
+  color: #0D47A1;
+  text-decoration: underline; }
 
 .nav .open > a,
 .nav .open > a:focus, .nav .open > a:hover,

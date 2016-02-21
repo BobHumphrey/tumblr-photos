@@ -16,7 +16,6 @@ $activePhotos = '';
 $activeGalleries = '';
 $activeSubmissions = '';
 $activeAdd = '';
-$activeLogin = '';
 $activeAdmin = '';
 $path = ($_SERVER['REQUEST_URI']);
 
@@ -26,6 +25,7 @@ $pathPhotos = '/photos';
 $pathGalleries = '/galleries';
 $pathSubmissions = '/submissions';
 $pathLogin = '/auth/login';
+$pathScheduledJobLog = '/admin/index';
 
 if (substr($path, 0, strlen($pathPhotosAdd)) == $pathPhotosAdd) {
   $activeAdd = 'active';
@@ -43,7 +43,10 @@ elseif (substr($path, 0, strlen($pathSubmissions)) == $pathSubmissions) {
   $activeSubmissions = 'active';
 }
 elseif (substr($path, 0, strlen($pathLogin)) == $pathLogin) {
-  $activeLogin = 'active';
+  $activeAdmin = 'active';
+}
+elseif (substr($path, 0, strlen($pathScheduledJobLog)) == $pathScheduledJobLog) {
+  $activeAdmin = 'active';
 }
 ?>
 
@@ -98,7 +101,7 @@ elseif (substr($path, 0, strlen($pathLogin)) == $pathLogin) {
             @if (Auth::check())
             <li><a href="{{$logoutLink}}">LOGOUT</a></li>
             @else
-            <li class="{{$activeLogin}}"><a href="{{$loginLink}}">LOGIN</a></li>
+            <li><a href="{{$loginLink}}">LOGIN</a></li>
             @endif
             <li><a href="{{$scheduledJobLogLink}}">SCHEDULED JOB LOG</a></li>
           </ul>
